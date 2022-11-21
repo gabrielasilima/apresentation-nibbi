@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/936b50e383.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="slide.css">
+  <title> Nibbi </title>
+  <link rel="icon" type="image/png" sizes="192x192" href="./assets/logo.png">
+
+</head>
+
+<body>
+  <div class="slide">
+    <div class="item-slide">
+      <div id="voltar" class="btn">
+        <i class="fas fa-chevron-left"></i>
+      </div>
+      <div id="avancar" class="btn">
+        <i class="fas fa-chevron-right"></i>
+      </div>
+
+      <div id="atual" class="images">
+        <img src="./assets/Nibbi - Apresentação (1).jpg" alt="" srcset="">
+      </div>
+      <div class="images">
+        <img src="./assets/sumário.jpg" alt="" srcset="">
+      </div>
+      <div class="images">
+        <img src="./assets/o que é.jpg" alt="" srcset="">
+      </div>
+      <div class="images">
+        <img src="./assets/linguagem.jpg" alt="" srcset="">
+      </div>
+      <div class="images">
+        <img src="./assets/pagina2.jpg" alt="" srcset="">
+      </div>
+      <div class="images">
+        <img src="./assets/paginarestrita.png" alt="" srcset="">
+      </div>
+    </div>
+    <div class="position">
+    </div>
+  </div>
+</body>
+<script>
+  var position = document.querySelector('.position')
+  var quant = document.querySelectorAll('.item-slide .images')
+  var atual = 0
+  var imagem = document.getElementById('atual')
+  var avancar = document.getElementById('avancar')
+  var voltar = document.getElementById('voltar')
+  var rolar = true
+
+  for (let i = 0; i < quant.length; i++) {
+    var div = document.createElement('div')
+    div.id = i
+    position.appendChild(div)
+  }
+  document.getElementById('0').classList.add('primeira')
+
+  var pos = document.querySelectorAll('.position div')
+
+  for (let i = 0; i < pos.length; i++) {
+    pos[i].addEventListener('click', () => {
+      atual = pos[i].id
+      rolar = false
+      slide()
+    })
+  }
+
+  voltar.addEventListener('click', () => {
+    atual--
+    rolar = false
+    slide()
+  })
+
+  avancar.addEventListener('click', () => {
+    atual++
+    rolar = false
+    slide()
+  })
+
+  function slide() {
+    if (atual >= quant.length) {
+      atual = 0;
+    } else if (atual < 0) {
+      atual = quant.length - 1
+    }
+
+    document.querySelector('.primeira').classList.remove('primeira')
+    imagem.style.marginLeft = -1024 * atual +'px'
+    document.getElementById(atual).classList.add('primeira')
+
+  }
+
+
+
+</script>
+
+</html>
